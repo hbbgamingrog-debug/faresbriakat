@@ -13,6 +13,7 @@
             --primary: #00b894;
             --primary-dark: #008f72;
             --accent: #fdcb6e;
+            --danger: #ff4757;
             --dark: #2d3436;
             --light: #dfe6e9;
             --glass: rgba(255, 255, 255, 0.7);
@@ -60,114 +61,164 @@
 
         nav ul { display: flex; gap: 2rem; }
         nav a { font-weight: 700; color: var(--dark); transition: 0.3s; position: relative; }
-        nav a::after {
-            content: ''; position: absolute; bottom: -5px; right: 0; width: 0; height: 3px; background: var(--primary); transition: 0.3s; border-radius: 2px;
-        }
+        nav a::after { content: ''; position: absolute; bottom: -5px; right: 0; width: 0; height: 3px; background: var(--primary); transition: 0.3s; border-radius: 2px; }
         nav a:hover::after { width: 100%; }
 
         /* --- قسم الهيرو --- */
-        .hero { text-align: center; padding: 6rem 5%; position: relative; }
+        .hero { text-align: center; padding: 4rem 5%; position: relative; }
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
             background: linear-gradient(45deg, var(--primary), #0984e3);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 1rem; animation: fadeInUp 1s ease;
         }
-        .hero p { font-size: 1.2rem; color: #636e72; margin-bottom: 2rem; animation: fadeInUp 1.2s ease; }
+        .hero p { font-size: 1.1rem; color: #636e72; margin-bottom: 2rem; animation: fadeInUp 1.2s ease; }
         
         .search-box {
             background: var(--white); max-width: 600px; margin: 0 auto; border-radius: 50px;
             padding: 0.5rem; display: flex; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             animation: fadeInUp 1.4s ease; border: 1px solid white;
         }
-        .search-box input {
-            flex: 1; border: none; padding: 1rem 2rem; border-radius: 50px; font-size: 1.1rem;
-        }
+        .search-box input { flex: 1; border: none; padding: 1rem 2rem; border-radius: 50px; font-size: 1.1rem; }
         .search-box button {
             background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 50%;
             font-size: 1.2rem; transition: 0.3s; cursor: pointer; border: none;
         }
         .search-box button:hover { background: var(--primary-dark); }
-        .search-box button:active { transform: scale(0.9); }
         .searching { animation: spin 1s linear infinite; }
 
         /* --- الأقسام والبطاقات --- */
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding-bottom: 4rem; }
+        .container { width: 95%; max-width: 1200px; margin: 0 auto; padding-bottom: 4rem; }
+        .levels-wrapper { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 3rem; }
         
-        .level-card {
-            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(5px);
-            padding: 2rem; border-radius: 20px; text-align: center;
-            border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: all 0.4s ease; cursor: pointer;
+        .year-card {
+            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(5px);
+            padding: 1rem 2rem; border-radius: 15px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease; cursor: pointer; min-width: 120px; flex: 1 1 calc(10% - 20px);
         }
-        .level-card:hover { transform: translateY(-10px); background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .level-card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block; }
+        .year-card:hover { transform: translateY(-5px); background: white; border-color: var(--primary); }
+        .year-card.active { background: var(--primary); color: white; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 184, 148, 0.4); }
+        .year-card.active h3, .year-card.active i { color: white; }
+        .year-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--dark); }
+        .year-card i { font-size: 1.5rem; color: var(--primary); margin-bottom: 5px; display: block; }
+        
+        .stage-break { width: 100%; height: 1px; background: #e0e0e0; margin: 1.5rem 0; display: flex; align-items: center; justify-content: center; }
+        .stage-label { background: #f0f3f5; padding: 0 15px; color: #888; font-weight: 700; font-size: 1rem; }
 
-        .resources-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;
-        }
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
         .resource-card {
             background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: 0.4s; border: 1px solid #eee;
+            transition: 0.4s; border: 1px solid #eee; position: relative;
         }
         .resource-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
         
+        /* زر الحذف */
+        .delete-btn {
+            position: absolute; top: 10px; right: 10px;
+            background: rgba(255, 71, 87, 0.95); color: white;
+            width: 35px; height: 35px; border-radius: 50%;
+            display: none; 
+            justify-content: center; align-items: center;
+            cursor: pointer; 
+            z-index: 999; 
+            transition: 0.3s; border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .delete-btn:hover { background: #d63031; transform: scale(1.1); }
+
         .card-img-wrap { height: 180px; overflow: hidden; position: relative; }
         .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .resource-card:hover .card-img-wrap img { transform: scale(1.1); }
-        
         .card-body { padding: 1.5rem; }
         .badge { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 10px; }
         .badge-lesson { background: #e0f7fa; color: #006064; }
         .badge-exam { background: #ffebee; color: #c62828; }
-
-        .no-results {
-            text-align: center; width: 100%; grid-column: 1 / -1; padding: 3rem;
-            color: #999; display: none; animation: fadeInUp 0.5s;
-        }
-        .no-results i { font-size: 3rem; margin-bottom: 1rem; color: #ddd; }
-
-        /* --- الأزرار --- */
-        .btn-main {
-            padding: 12px 25px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 1rem;
-        }
-        .btn-contact { background: var(--accent); color: var(--dark); box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4); }
-        .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(253, 203, 110, 0.6); }
-
-        .btn-upload { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4); }
-        .btn-upload:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 184, 148, 0.6); }
-
-        .btn-download { width: 100%; padding: 10px; background: #f1f2f6; border-radius: 10px; border: none; font-weight: 700; margin-top: 1rem; color: var(--dark); transition: 0.3s; cursor: pointer; }
-        .btn-download:hover { background: var(--dark); color: white; }
-
+        
         /* --- النوافذ المنبثقة --- */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px);
             z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.4s;
         }
         .modal-overlay.open { opacity: 1; visibility: visible; }
         .modal {
-            background: white; width: 90%; max-width: 450px; padding: 2rem; border-radius: 25px;
-            transform: scale(0.7); opacity: 0; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95); 
+            width: 95%; max-width: 600px; 
+            padding: 2.5rem; border-radius: 30px;
+            transform: scale(0.8); opacity: 0; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); text-align: right;
+            max-height: 90vh; overflow-y: auto;
         }
         .modal-overlay.open .modal { transform: scale(1); opacity: 1; }
-        .input-group { margin: 1.5rem 0; }
-        .input-group input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-size: 1rem; text-align: center; transition: 0.3s; }
-        .input-group input:focus { border-color: var(--primary); }
+        .modal-header { text-align: center; margin-bottom: 2rem; position: relative; }
+        .close-modal {
+            position: absolute; top: 0; left: 0; width: 35px; height: 35px; background: #f0f0f0; border-radius: 50%;
+            display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.3s;
+        }
+        .close-modal:hover { background: #e74c3c; color: white; }
 
-        /* --- التذييل --- */
-        footer { background: white; padding: 2rem; text-align: center; border-top: 1px solid #eee; position: relative; z-index: 10; }
+        /* --- تصميم النماذج --- */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+        .form-control {
+            width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 12px;
+            font-family: 'Cairo', sans-serif; font-size: 1rem; background: #f9f9f9; transition: 0.3s;
+        }
+        .form-control:focus { background: white; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 184, 148, 0.1); }
+        
+        .radio-group { display: flex; gap: 10px; }
+        .radio-option {
+            flex: 1; padding: 10px; border: 2px solid #eee; border-radius: 10px; text-align: center; cursor: pointer; transition: 0.3s;
+        }
+        .radio-option input { display: none; }
+        .radio-option span { display: block; font-weight: 700; font-size: 0.9rem; }
+        .radio-option:has(input[value="lesson"]:checked) { border-color: #2196f3; background: #e3f2fd; }
+        .radio-option:has(input[value="homework"]:checked) { border-color: #ff9800; background: #fff3e0; }
+        .radio-option:has(input[value="exam"]:checked) { border-color: #f44336; background: #ffebee; }
+
+        .file-drop-zone {
+            border: 2px dashed #ccc; border-radius: 15px; padding: 2rem; text-align: center;
+            background: #fafafa; cursor: pointer; transition: 0.3s; position: relative;
+        }
+        .file-drop-zone:hover { border-color: var(--primary); background: #e0f2f1; }
+        .file-drop-zone input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+        .file-icon { font-size: 2.5rem; color: #ccc; margin-bottom: 0.5rem; }
+        
+        .btn-submit {
+            width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 12px;
+            font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .btn-submit:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4); }
+        .btn-submit i { display: none; }
+        .loading .btn-submit i { display: block; animation: spin 1s linear infinite; }
+        .loading .btn-submit span { opacity: 0.7; }
+
+        .telegram-card {
+            background: #f0f8ff; border: 1px solid #dbeafe; padding: 1.5rem; border-radius: 15px; text-align: center;
+        }
+        .telegram-btn {
+            display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; background: #0088cc; color: white;
+            border-radius: 50px; font-weight: 700; margin-top: 1rem; text-decoration: none; transition: 0.3s; box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+        }
+        .telegram-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 136, 204, 0.5); }
+
+        .btn-main { padding: 12px 25px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 1rem; }
+        .btn-contact { background: var(--accent); color: var(--dark); box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4); }
+        .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(253, 203, 110, 0.6); }
+        .btn-upload { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4); }
+        .btn-upload:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 184, 148, 0.6); }
+
+        .footer-cta { background: white; padding: 2rem; text-align: center; border-top: 1px solid #eee; position: relative; z-index: 10; }
         .admin-trigger {
             margin-top: 10px; background: transparent; border: 1px dashed #ccc; color: #999; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
         }
         .admin-trigger:hover { border-color: var(--primary); color: var(--primary); }
         .admin-trigger.active { background: var(--primary); color: white; border-style: solid; }
 
-        /* --- حركات الظهور --- */
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) { .hero h1 { font-size: 2rem; } nav ul { display: none; } }
     </style>
@@ -183,37 +234,52 @@
         <nav>
             <ul>
                 <li><a href="#" class="active">الرئيسية</a></li>
-                <li><a href="#">الابتدائي</a></li>
-                <li><a href="#">المتوسط</a></li>
-                <li><a href="#">الثانوي</a></li>
+                <li><a href="#">المناهج</a></li>
+                <li><a href="#">اتصل بنا</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>التعليم بلا حدود</h1>
-        <p>اكتشف دروسك، فروضك، واختباراتك بتصميم عصري ومريح.</p>
+        <h1>المكتبة المدرسية الشاملة</h1>
+        <p>جميع الدروس والفروض والاختبارات من السنة أولى ابتدائي إلى البكالوريا.</p>
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="عن ماذا تبحث اليوم؟ (مثال: رياضيات، علوم...)">
+            <input type="text" id="searchInput" placeholder="ابحث عن درس (مثال: رياضيات، علوم...)">
             <button id="searchBtn" onclick="performSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </section>
 
     <div class="container">
-        <div class="section-title reveal" style="text-align: center; margin-bottom: 3rem;">
-            <h2 style="font-size: 2rem; font-weight: 800;">اختر القسم</h2>
+        <div class="section-title reveal">
+            <h2 style="font-size: 2rem; font-weight: 800; color: var(--dark);">اختر السنة الدراسية</h2>
         </div>
-        
-        <div class="levels-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-            <div class="level-card reveal"><i class="fa-solid fa-shapes"></i><h3>الابتدائي</h3></div>
-            <div class="level-card reveal" style="animation-delay: 0.1s;"><i class="fa-solid fa-book-open"></i><h3>المتوسط</h3></div>
-            <div class="level-card reveal" style="animation-delay: 0.2s;"><i class="fa-solid fa-flask"></i><h3>الثانوي</h3></div>
+
+        <div class="levels-wrapper reveal">
+            <!-- الابتدائي -->
+            <div class="year-card" onclick="selectLevel(this, '1 ابتدائي')"><i class="fa-solid fa-shapes"></i><h3>1 ابتدائي</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '2 ابتدائي')"><i class="fa-solid fa-pen-nib"></i><h3>2 ابتدائي</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '3 ابتدائي')"><i class="fa-solid fa-pencil"></i><h3>3 ابتدائي</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '4 ابتدائي')"><i class="fa-solid fa-book"></i><h3>4 ابتدائي</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '5 ابتدائي')"><i class="fa-solid fa-school"></i><h3>5 ابتدائي</h3></div>
+            <div class="stage-break"><span class="stage-label">الطور المتوسط</span></div>
+            <!-- المتوسط -->
+            <div class="year-card" onclick="selectLevel(this, '1 متوسط')"><i class="fa-solid fa-child"></i><h3>1 متوسط</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '2 متوسط')"><i class="fa-solid fa-user-graduate"></i><h3>2 متوسط</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '3 متوسط')"><i class="fa-solid fa-laptop-code"></i><h3>3 متوسط</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '4 متوسط')"><i class="fa-solid fa-medal"></i><h3>4 متوسط</h3></div>
+            <div class="stage-break"><span class="stage-label">الطور الثانوي</span></div>
+            <!-- الثانوي -->
+            <div class="year-card" onclick="selectLevel(this, '1 ثانوي')"><i class="fa-solid fa-flask"></i><h3>1 ثانوي</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '2 ثانوي')"><i class="fa-solid fa-microscope"></i><h3>2 ثانوي</h3></div>
+            <div class="year-card" onclick="selectLevel(this, '3 ثانوي (بكالوريا)')" style="border: 2px solid var(--accent);">
+                <i class="fa-solid fa-certificate" style="color: var(--accent);"></i>
+                <h3>بكالوريا</h3>
+            </div>
         </div>
 
         <div class="main-content" id="lessonsSection">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;" class="reveal">
-                <h2 style="font-size: 1.8rem; font-weight: 800;">أحدث الدروس</h2>
-                
+                <h2 id="sectionTitle" style="font-size: 1.8rem; font-weight: 800;">أحدث الدروس</h2>
                 <div id="actionArea">
                     <button class="btn-main btn-contact" id="btnContact" onclick="openModal('contactModal')">
                         <i class="fa-solid fa-plus"></i> أضف درساً
@@ -225,100 +291,203 @@
             </div>
 
             <div class="resources-grid" id="resourcesGrid">
-                <div class="no-results" id="noResultsMsg">
-                    <i class="fa-regular fa-face-frown-open"></i>
+                <div class="no-results" id="noResultsMsg" style="grid-column: 1/-1; padding: 3rem; text-align: center; color: #999; display: none;">
+                    <i class="fa-regular fa-face-frown-open" style="font-size: 3rem; margin-bottom: 1rem; color: #ddd;"></i>
                     <h3>عذراً، لم يتم العثور على نتائج</h3>
-                    <p>جرب البحث بكلمة أخرى.</p>
                 </div>
 
+                <!-- بطاقة 1 -->
                 <div class="resource-card reveal">
+                    <button class="delete-btn" onclick="event.stopPropagation(); deleteLesson(this)"><i class="fa-solid fa-trash"></i></button>
                     <div class="card-img-wrap"><img src="https://picsum.photos/seed/math1/400/200" alt="Math"></div>
                     <div class="card-body">
                         <span class="badge badge-lesson">درس</span>
                         <h3 class="lesson-title">حل معادلات الدرجة الثانية</h3>
-                        <p style="color: #888; font-size: 0.9rem;">رياضيات - 4 متوسط</p>
-                        <button class="btn-download">تحميل الملف</button>
+                        <p class="lesson-meta">رياضيات - 4 متوسط</p>
+                        <button class="btn-download" style="width: 100%; padding: 10px; background: #f1f2f6; border: none; border-radius: 10px; font-weight: 700; margin-top: 1rem; cursor: pointer;">تحميل الملف</button>
                     </div>
                 </div>
 
-                <div class="resource-card reveal" style="animation-delay: 0.2s;">
+                <!-- بطاقة 2 -->
+                <div class="resource-card reveal" style="animation-delay: 0.1s;">
+                    <button class="delete-btn" onclick="event.stopPropagation(); deleteLesson(this)"><i class="fa-solid fa-trash"></i></button>
                     <div class="card-img-wrap"><img src="https://picsum.photos/seed/science1/400/200" alt="Science"></div>
                     <div class="card-body">
                         <span class="badge badge-exam">اختبار</span>
                         <h3 class="lesson-title">اختبار الفصل الأول فيزياء</h3>
-                        <p style="color: #888; font-size: 0.9rem;">العلوم - 1 ثانوي</p>
-                        <button class="btn-download">تحميل الملف</button>
+                        <p class="lesson-meta">العلوم - 1 ثانوي</p>
+                        <button class="btn-download" style="width: 100%; padding: 10px; background: #f1f2f6; border: none; border-radius: 10px; font-weight: 700; margin-top: 1rem; cursor: pointer;">تحميل الملف</button>
                     </div>
                 </div>
 
-                <div class="resource-card reveal" style="animation-delay: 0.4s;">
-                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/eng1/400/200" alt="English"></div>
+                <!-- بطاقة 3 -->
+                <div class="resource-card reveal" style="animation-delay: 0.2s;">
+                    <button class="delete-btn" onclick="event.stopPropagation(); deleteLesson(this)"><i class="fa-solid fa-trash"></i></button>
+                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/bac/400/200" alt="BAC"></div>
                     <div class="card-body">
-                        <span class="badge badge-lesson">فرض</span>
-                        <h3 class="lesson-title">Grammar: Past Tense</h3>
-                        <p style="color: #888; font-size: 0.9rem;">الإنجليزية - 4 متوسط</p>
-                        <button class="btn-download">تحميل الملف</button>
-                    </div>
-                </div>
-
-                <div class="resource-card reveal" style="animation-delay: 0.6s;">
-                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/arab/400/200" alt="Arabic"></div>
-                    <div class="card-body">
-                        <span class="badge badge-lesson">درس</span>
-                        <h3 class="lesson-title">أساليب النفي في اللغة العربية</h3>
-                        <p style="color: #888; font-size: 0.9rem;">اللغة العربية - 1 متوسط</p>
-                        <button class="btn-download">تحميل الملف</button>
+                        <span class="badge badge-exam">بكالوريا</span>
+                        <h3 class="lesson-title">نموذج بكالوريا رياضيات</h3>
+                        <p class="lesson-meta">3 ثانوي - بكالوريا</p>
+                        <button class="btn-download" style="width: 100%; padding: 10px; background: #f1f2f6; border: none; border-radius: 10px; font-weight: 700; margin-top: 1rem; cursor: pointer;">تحميل الملف</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer>
+    <footer class="footer-cta">
         <p>جميع الحقوق محفوظة &copy; 2026 منصة مدرستي</p>
         <button class="admin-trigger" id="adminLoginBtn" onclick="openModal('loginModal')">
             <i class="fa-solid fa-user-secret"></i> دخول المسؤول
         </button>
     </footer>
 
+    <!-- 1. نافذة تسجيل دخول المسؤول -->
     <div class="modal-overlay" id="loginModal">
         <div class="modal">
-            <i class="fa-solid fa-lock fa-3x" style="color: var(--primary);"></i>
-            <h2>منطقة محمية</h2>
-            <p style="color: #777;">أدخل كلمة السر للمتابعة</p>
-            <div class="input-group"><input type="password" id="adminPassword" placeholder="كلمة السر"></div>
-            <button class="btn-main btn-upload" style="width: 100%; justify-content: center;" onclick="checkPassword()">دخول</button>
-            <p style="margin-top: 15px; cursor: pointer; color: #999;" onclick="closeModal('loginModal')">إلغاء</p>
+            <div class="modal-header">
+                <h2 style="margin-bottom: 5px;">منطقة محمية</h2>
+                <p style="color: #777; font-size: 0.9rem;">أدخل كلمة السر للوصول للوحة التحكم</p>
+                <div class="close-modal" onclick="closeModal('loginModal')"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div class="form-group" style="text-align: center; margin-bottom: 2rem;">
+                <input type="password" id="adminPassword" class="form-control" style="text-align: center; font-size: 1.2rem; letter-spacing: 5px;" placeholder="كلمة السر">
+            </div>
+            <button class="btn-submit" onclick="checkPassword()">
+                <span>تسجيل الدخول</span>
+            </button>
         </div>
     </div>
 
-    <div class="modal-overlay" id="contactModal">
-        <div class="modal">
-            <i class="fa-brands fa-telegram fa-3x" style="color: #0088cc; margin-bottom: 1rem;"></i>
-            <h3>تواصل معنا</h3>
-            <p>لإضافة دروس، يرجى مراسلتنا عبر تيليجرام.</p>
-            <a href="https://t.me/bikojl" target="_blank" class="btn-main btn-contact" style="width: 100%; justify-content: center; margin-top: 1rem; text-decoration: none;">@bikojl</a>
-            <p style="margin-top: 15px; cursor: pointer; color: #999;" onclick="closeModal('contactModal')">إغلاق</p>
-        </div>
-    </div>
-
+    <!-- 2. نافذة رفع الملفات (للمسؤول) - تم تحديث قائمة السنوات -->
     <div class="modal-overlay" id="uploadModal">
         <div class="modal">
-            <h2 style="margin-bottom: 1rem;">رفع ملف جديد</h2>
-            <form onsubmit="handleUpload(event)">
-                <div class="input-group" style="text-align: right;"><label>العنوان</label><input type="text" style="text-align: right;" required></div>
-                <div class="input-group" style="text-align: right;"><label>الملف</label><input type="file" style="text-align: right;" required></div>
-                <button type="submit" class="btn-main btn-upload" style="width: 100%; justify-content: center;">نشر</button>
-                <p style="margin-top: 15px; cursor: pointer; color: #999;" onclick="closeModal('uploadModal')">إلغاء</p>
+            <div class="modal-header">
+                <h2 style="color: var(--primary); margin-bottom: 5px;">رفع محتوى جديد</h2>
+                <p style="color: #777; font-size: 0.9rem;">أضف درس، فرض أو اختبار للمنصة</p>
+                <div class="close-modal" onclick="closeModal('uploadModal')"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            
+            <form id="uploadForm" onsubmit="handleUpload(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>عنوان الملف</label>
+                        <input type="text" class="form-control" placeholder="مثال: حل التمارين..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>السنة الدراسية</label>
+                        <!-- القائمة المحتوية على جميع السنوات -->
+                        <select class="form-control" required>
+                            <option value="" disabled selected>اختر السنة الدراسية</option>
+                            
+                            <optgroup label="الطور الابتدائي">
+                                <option value="1-primary">سنة أولى ابتدائي</option>
+                                <option value="2-primary">سنة ثانية ابتدائي</option>
+                                <option value="3-primary">سنة ثالثة ابتدائي</option>
+                                <option value="4-primary">سنة رابعة ابتدائي</option>
+                                <option value="5-primary">سنة خامسة ابتدائي</option>
+                            </optgroup>
+
+                            <optgroup label="الطور المتوسط">
+                                <option value="1-middle">سنة أولى متوسط</option>
+                                <option value="2-middle">سنة ثانية متوسط</option>
+                                <option value="3-middle">سنة ثالثة متوسط</option>
+                                <option value="4-middle">سنة رابعة متوسط</option>
+                            </optgroup>
+
+                            <optgroup label="الطور الثانوي">
+                                <option value="1-secondary">سنة أولى ثانوي</option>
+                                <option value="2-secondary">سنة ثانية ثانوي</option>
+                                <option value="3-secondary">سنة ثالثة ثانوي (بكالوريا)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>المادة</label>
+                        <select class="form-control" required>
+                            <option value="" disabled selected>اختر المادة</option>
+                            <option>الرياضيات</option>
+                            <option>العلوم</option>
+                            <option>الفيزياء</option>
+                            <option>اللغة العربية</option>
+                            <option>اللغة الفرنسية</option>
+                            <option>اللغة الإنجليزية</option>
+                            <option>العلوم الإسلامية</option>
+                            <option>التاريخ والجغرافيا</option>
+                            <option>التربية المدنية</option>
+                            <option>الفلسفة</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>نوع المحتوى</label>
+                        <div class="radio-group">
+                            <label class="radio-option"><input type="radio" name="type" value="lesson" checked><span>درس</span></label>
+                            <label class="radio-option"><input type="radio" name="type" value="homework"><span>فرض</span></label>
+                            <label class="radio-option"><input type="radio" name="type" value="exam"><span>اختبار</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>وصف مختصر (اختياري)</label>
+                    <textarea class="form-control" rows="2" placeholder="ملاحظات بسيطة..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>الملف (PDF, DOCX, ZIP)</label>
+                    <div class="file-drop-zone">
+                        <input type="file" id="fileInput" required onchange="updateFileName(this)">
+                        <i class="fa-solid fa-cloud-arrow-up file-icon"></i>
+                        <p style="color: #888; margin-bottom: 5px;">اضغط هنا أو اسحب الملف</p>
+                        <p id="fileName" style="font-weight: 700; color: var(--primary); font-size: 0.9rem;"></p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" id="uploadBtn">
+                    <span><i class="fa-solid fa-paper-plane"></i> نشر الملف</span>
+                </button>
             </form>
         </div>
     </div>
 
+    <!-- 3. نافذة التواصل (للزوار) -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 style="color: #0088cc; margin-bottom: 5px;">تواصل مع الإدارة</h2>
+                <p style="color: #777; font-size: 0.9rem;">لإضافة محتوى، يمكنك مراسلتنا مباشرة</p>
+                <div class="close-modal" onclick="closeModal('contactModal')"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            
+            <div class="telegram-card">
+                <i class="fa-brands fa-telegram fa-4x" style="color: #0088cc; margin-bottom: 1rem;"></i>
+                <p>أرسل ملفاتك أو طلباتك عبر حساب تيليجرام الرسمي:</p>
+                <div style="background: #fff; padding: 10px; border-radius: 10px; margin: 1rem 0; display: flex; justify-content: space-between; align-items: center; border: 1px dashed #ccc;">
+                    <span style="font-weight: 700; font-size: 1.2rem; direction: ltr;">@bikojl</span>
+                    <button onclick="copyToClipboard('@bikojl')" style="background:none; border:none; cursor:pointer; color: var(--primary);"><i class="fa-regular fa-copy"></i></button>
+                </div>
+                <a href="https://t.me/bikojl" target="_blank" class="telegram-btn">
+                    <i class="fa-solid fa-paper-plane"></i> فتح تيليجرام
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // --- اختيار السنة ---
+        function selectLevel(card, levelName) {
+            document.querySelectorAll('.year-card').forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+            document.getElementById('sectionTitle').innerText = "الدروس لـ: " + levelName;
+            document.getElementById('lessonsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
         // --- البحث ---
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
-        const resourcesGrid = document.getElementById('resourcesGrid');
         const cards = Array.from(document.querySelectorAll('.resource-card'));
         const noResultsMsg = document.getElementById('noResultsMsg');
         const lessonsSection = document.getElementById('lessonsSection');
@@ -331,13 +500,13 @@
             if(term.length > 0) { lessonsSection.scrollIntoView({ behavior: 'smooth' }); }
             cards.forEach(card => {
                 const title = card.querySelector('.lesson-title').textContent.toLowerCase();
-                const category = card.querySelector('p').textContent.toLowerCase();
-                if (title.includes(term) || category.includes(term)) {
+                const meta = card.querySelector('.lesson-meta').textContent.toLowerCase();
+                if (title.includes(term) || meta.includes(term)) {
                     card.style.display = 'block'; hasVisibleCards = true;
                 } else { card.style.display = 'none'; }
             });
             if (hasVisibleCards) { noResultsMsg.style.display = 'none'; } 
-            else { noResultsMsg.style.display = 'block'; resourcesGrid.appendChild(noResultsMsg); }
+            else { noResultsMsg.style.display = 'block'; }
         }
         searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') { performSearch(); } });
 
@@ -347,46 +516,89 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) { reveals[i].classList.add("active"); }
+                if (elementTop < windowHeight - 150) { reveals[i].classList.add("active"); }
             }
         }
         window.addEventListener("scroll", reveal); reveal();
 
-        // --- المسؤول ---
+        // --- المسؤول والنوافذ ---
         let isAdmin = false; const ADMIN_PASS = "111222333";
         function openModal(id) { document.getElementById(id).classList.add('open'); }
         function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
         function checkPassword() {
             const inputPass = document.getElementById('adminPassword').value;
             if (inputPass === ADMIN_PASS) {
                 isAdmin = true; closeModal('loginModal'); toggleAdminUI(true); alert("مرحباً بك أيها المسؤول!");
-            } else {
-                const modal = document.querySelector('#loginModal .modal');
-                modal.style.transform = "translateX(10px)";
-                setTimeout(() => modal.style.transform = "translateX(-10px)", 100);
-                setTimeout(() => modal.style.transform = "scale(1)", 200);
-                alert("كلمة السر غير صحيحة!");
-            }
+            } else { alert("كلمة السر غير صحيحة!"); }
         }
+
         function toggleAdminUI(loggedIn) {
             const btnContact = document.getElementById('btnContact');
             const btnUpload = document.getElementById('btnUpload');
             const adminBtn = document.getElementById('adminLoginBtn');
+            const deleteBtns = document.querySelectorAll('.delete-btn');
+
             if (loggedIn) {
                 btnContact.style.display = 'none'; btnUpload.style.display = 'flex';
                 adminBtn.innerHTML = '<i class="fa-solid fa-unlock"></i> خروج المسؤول';
                 adminBtn.classList.add('active');
+                deleteBtns.forEach(btn => btn.style.display = 'flex');
             } else {
                 btnContact.style.display = 'flex'; btnUpload.style.display = 'none';
                 adminBtn.innerHTML = '<i class="fa-solid fa-user-secret"></i> دخول المسؤول';
                 adminBtn.classList.remove('active');
+                deleteBtns.forEach(btn => btn.style.display = 'none');
             }
         }
-        function handleUpload(e) {
-            e.preventDefault(); closeModal('uploadModal'); alert("تم رفع الملف بنجاح!"); e.target.reset();
+
+        // --- دالة حذف الدرس ---
+        function deleteLesson(btnElement) {
+            if(confirm('هل أنت متأكد من حذف هذا الدرس؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                const card = btnElement.closest('.resource-card');
+                card.style.transition = '0.5s';
+                card.style.transform = 'scale(0)';
+                card.style.opacity = '0';
+                setTimeout(() => card.remove(), 500);
+            }
         }
-        window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.classList.remove('open'); } }
+
+        // --- دالة رفع الملفات ---
+        function updateFileName(input) {
+            const fileName = input.files[0] ? input.files[0].name : '';
+            document.getElementById('fileName').textContent = fileName;
+        }
+
+        function handleUpload(e) {
+            e.preventDefault();
+            const btn = document.getElementById('uploadBtn');
+            const originalText = btn.innerHTML;
+            
+            btn.classList.add('loading');
+            btn.innerHTML = '<i class="fa-solid fa-spinner"></i> جاري الرفع...';
+            
+            setTimeout(() => {
+                closeModal('uploadModal');
+                alert("تم رفع الملف بنجاح!");
+                btn.classList.remove('loading');
+                btn.innerHTML = originalText;
+                document.getElementById('uploadForm').reset();
+                document.getElementById('fileName').textContent = '';
+            }, 1500);
+        }
+
+        // --- نسخ اسم المستخدم ---
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert("تم نسخ اسم المستخدم: " + text);
+            }, function(err) {
+                console.error('فشل النسخ', err);
+            });
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) { event.target.classList.remove('open'); }
+        }
     </script>
 </body>
 </html>
