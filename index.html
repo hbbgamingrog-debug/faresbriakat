@@ -3,854 +3,390 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة الدراسة الجزائرية | دروس واختبارات</title>
-    <!-- استدعاء خط تجوال -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- مكتبة أيقونات -->
+    <title>منصة مدرستي - الدروس الجزائرية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* --- إعدادات الألوان والمتغيرات --- */
         :root {
-            --primary-color: #00695c; /* أخضر داكن يمثل التعليم */
-            --secondary-color: #ffd740; /* أصفر ذهبي */
-            --accent-color: #e53935;
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --white: #ffffff;
-            --shadow: 0 4px 6px rgba(0,0,0,0.1);
-            --radius: 12px;
+            --primary: #00b894;
+            --primary-dark: #008f72;
+            --accent: #fdcb6e;
+            --dark: #2d3436;
+            --light: #dfe6e9;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* --- Header & Nav --- */
-        header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            color: var(--secondary-color);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        nav a:hover, nav a.active {
-            background-color: rgba(255,255,255,0.2);
-            color: var(--white);
-        }
-
-        .btn-login {
-            background-color: var(--secondary-color);
-            color: #000 !important;
-            font-weight: bold !important;
-        }
-
-        /* --- Main Layout --- */
-        main {
-            flex: 1;
-            padding: 2rem 0;
-        }
-
-        .section {
-            display: none; /* يتم إظهار القسم النشط فقط */
-            animation: fadeIn 0.5s ease;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- Filters (Home) --- */
-        .filters {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .filter-group {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .filter-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        select, input, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        select:focus, input:focus, textarea:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 105, 92, 0.1);
-        }
-
-        /* --- Content Grid --- */
-        .content-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--white);
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-            position: relative;
-            border-top: 4px solid var(--primary-color);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
-        }
-
-        .card-header {
-            height: 140px;
-            background-color: #eee;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #999;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
-        .card-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f0f3f5;
+            color: var(--dark);
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .card-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--primary-color);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
+        /* --- خلفيات متحركة --- */
+        .blob {
+            position: absolute; border-radius: 50%; filter: blur(80px); z-index: -1;
+            animation: float 10s infinite alternate ease-in-out; opacity: 0.6;
+        }
+        .blob-1 { top: -10%; right: -10%; width: 500px; height: 500px; background: #00cec9; animation-duration: 12s; }
+        .blob-2 { bottom: -10%; left: -10%; width: 400px; height: 400px; background: #fab1a0; animation-duration: 8s; }
+        .blob-3 { top: 40%; left: 30%; width: 300px; height: 300px; background: #fdcb6e; animation-duration: 15s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
         }
 
-        .card-type {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: var(--secondary-color);
-            color: #000;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+        /* --- الهيدر الزجاجي --- */
+        header {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
+        .logo { font-size: 1.8rem; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo i { animation: spin 4s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .card-body {
-            padding: 20px;
+        nav ul { display: flex; gap: 2rem; }
+        nav a { font-weight: 700; color: var(--dark); transition: 0.3s; position: relative; }
+        nav a::after {
+            content: ''; position: absolute; bottom: -5px; right: 0; width: 0; height: 3px; background: var(--primary); transition: 0.3s; border-radius: 2px;
         }
+        nav a:hover::after { width: 100%; }
 
-        .card-title {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            color: var(--text-color);
+        /* --- قسم الهيرو --- */
+        .hero { text-align: center; padding: 6rem 5%; position: relative; }
+        .hero h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--primary), #0984e3);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem; animation: fadeInUp 1s ease;
         }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            color: #777;
-            margin-bottom: 15px;
+        .hero p { font-size: 1.2rem; color: #636e72; margin-bottom: 2rem; animation: fadeInUp 1.2s ease; }
+        
+        .search-box {
+            background: var(--white); max-width: 600px; margin: 0 auto; border-radius: 50px;
+            padding: 0.5rem; display: flex; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeInUp 1.4s ease; border: 1px solid white;
         }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 20px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        .search-box input {
+            flex: 1; border: none; padding: 1rem 2rem; border-radius: 50px; font-size: 1.1rem;
         }
-
-        .card-footer {
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-            text-align: center;
+        .search-box button {
+            background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 50%;
+            font-size: 1.2rem; transition: 0.3s; cursor: pointer; border: none;
         }
+        .search-box button:hover { background: var(--primary-dark); }
+        .search-box button:active { transform: scale(0.9); }
+        .searching { animation: spin 1s linear infinite; }
 
-        .btn-download {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 8px 20px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            width: 100%;
+        /* --- الأقسام والبطاقات --- */
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding-bottom: 4rem; }
+        
+        .level-card {
+            background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(5px);
+            padding: 2rem; border-radius: 20px; text-align: center;
+            border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease; cursor: pointer;
         }
+        .level-card:hover { transform: translateY(-10px); background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .level-card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; display: block; }
 
-        .btn-download:hover {
-            background-color: #004d40;
+        .resources-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;
         }
-
-        /* --- Admin Dashboard --- */
-        .login-box {
-            max-width: 400px;
-            margin: 50px auto;
-            background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
+        .resource-card {
+            background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.4s; border: 1px solid #eee;
         }
+        .resource-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        
+        .card-img-wrap { height: 180px; overflow: hidden; position: relative; }
+        .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .resource-card:hover .card-img-wrap img { transform: scale(1.1); }
+        
+        .card-body { padding: 1.5rem; }
+        .badge { padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-bottom: 10px; }
+        .badge-lesson { background: #e0f7fa; color: #006064; }
+        .badge-exam { background: #ffebee; color: #c62828; }
 
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
+        .no-results {
+            text-align: center; width: 100%; grid-column: 1 / -1; padding: 3rem;
+            color: #999; display: none; animation: fadeInUp 0.5s;
         }
+        .no-results i { font-size: 3rem; margin-bottom: 1rem; color: #ddd; }
 
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+        /* --- الأزرار --- */
+        .btn-main {
+            padding: 12px 25px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; font-size: 1rem;
         }
+        .btn-contact { background: var(--accent); color: var(--dark); box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4); }
+        .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(253, 203, 110, 0.6); }
 
-        .stat-card {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
+        .btn-upload { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(0, 184, 148, 0.4); }
+        .btn-upload:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0, 184, 148, 0.6); }
+
+        .btn-download { width: 100%; padding: 10px; background: #f1f2f6; border-radius: 10px; border: none; font-weight: 700; margin-top: 1rem; color: var(--dark); transition: 0.3s; cursor: pointer; }
+        .btn-download:hover { background: var(--dark); color: white; }
+
+        /* --- النوافذ المنبثقة --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px);
+            z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: 0.4s;
         }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
+        .modal-overlay.open { opacity: 1; visibility: visible; }
+        .modal {
+            background: white; width: 90%; max-width: 450px; padding: 2rem; border-radius: 25px;
+            transform: scale(0.7); opacity: 0; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
         }
+        .modal-overlay.open .modal { transform: scale(1); opacity: 1; }
+        .input-group { margin: 1.5rem 0; }
+        .input-group input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; font-size: 1rem; text-align: center; transition: 0.3s; }
+        .input-group input:focus { border-color: var(--primary); }
 
-        .form-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
+        /* --- التذييل --- */
+        footer { background: white; padding: 2rem; text-align: center; border-top: 1px solid #eee; position: relative; z-index: 10; }
+        .admin-trigger {
+            margin-top: 10px; background: transparent; border: 1px dashed #ccc; color: #999; padding: 5px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; transition: 0.3s;
         }
+        .admin-trigger:hover { border-color: var(--primary); color: var(--primary); }
+        .admin-trigger.active { background: var(--primary); color: white; border-style: solid; }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+        /* --- حركات الظهور --- */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        .btn-submit {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-submit:hover {
-            background-color: #004d40;
-        }
-
-        .table-container {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px;
-        }
-
-        th, td {
-            padding: 12px 15px;
-            text-align: right;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background-color: #f9f9f9;
-            color: #555;
-            font-weight: bold;
-        }
-
-        .action-btn {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-left: 5px;
-            color: white;
-        }
-
-        .btn-delete { background-color: var(--accent-color); }
-        .btn-delete:hover { background-color: #c62828; }
-
-        /* --- Toast Notification --- */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #333;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transform: translateY(100px);
-            transition: transform 0.3s ease;
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .toast.show {
-            transform: translateY(0);
-        }
-
-        .toast.success { border-right: 5px solid #4caf50; }
-        .toast.error { border-right: 5px solid #f44336; }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .form-row { grid-template-columns: 1fr; }
-            .nav-wrapper { flex-direction: column; gap: 15px; }
-            .content-grid { grid-template-columns: 1fr; }
-        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } nav ul { display: none; } }
     </style>
 </head>
 <body>
 
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
     <header>
-        <div class="container nav-wrapper">
-            <div class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                <span>المدرسة الجزائرية</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a onclick="showSection('home')" id="nav-home" class="active">الرئيسية</a></li>
-                    <li><a onclick="showSection('admin')" id="nav-admin" class="btn-login">لوحة التحكم</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="logo"><i class="fa-solid fa-graduation-cap"></i> مدرستي</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#">الابتدائي</a></li>
+                <li><a href="#">المتوسط</a></li>
+                <li><a href="#">الثانوي</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container">
+    <section class="hero">
+        <h1>التعليم بلا حدود</h1>
+        <p>اكتشف دروسك، فروضك، واختباراتك بتصميم عصري ومريح.</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="عن ماذا تبحث اليوم؟ (مثال: رياضيات، علوم...)">
+            <button id="searchBtn" onclick="performSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section-title reveal" style="text-align: center; margin-bottom: 3rem;">
+            <h2 style="font-size: 2rem; font-weight: 800;">اختر القسم</h2>
+        </div>
         
-        <!-- قسم الرئيسية -->
-        <section id="home" class="section active">
-            <div class="filters">
-                <div class="filter-group">
-                    <label><i class="fas fa-layer-group"></i> القسم</label>
-                    <select id="filter-level" onchange="applyFilters()">
-                        <option value="all">الكل</option>
-                        <option value="primary">الابتدائي</option>
-                        <option value="middle">المتوسط</option>
-                        <option value="secondary">الثانوي</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label><i class="fas fa-book"></i> المادة</label>
-                    <select id="filter-subject" onchange="applyFilters()">
-                        <option value="all">الكل</option>
-                        <option value="math">الرياضيات</option>
-                        <option value="science">العلوم</option>
-                        <option value="arabic">اللغة العربية</option>
-                        <option value="french">اللغة الفرنسية</option>
-                        <option value="english">اللغة الإنجليزية</option>
-                        <option value="islamic">التربية الإسلامية</option>
-                        <option value="history">التاريخ والجغرافيا</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label><i class="fas fa-file-alt"></i> النوع</label>
-                    <select id="filter-type" onchange="applyFilters()">
-                        <option value="all">الكل</option>
-                        <option value="lesson">درس</option>
-                        <option value="test">اختبار</option>
-                        <option value="homework">فرض</option>
-                        <option value="exercise">تمرين</option>
-                    </select>
+        <div class="levels-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+            <div class="level-card reveal"><i class="fa-solid fa-shapes"></i><h3>الابتدائي</h3></div>
+            <div class="level-card reveal" style="animation-delay: 0.1s;"><i class="fa-solid fa-book-open"></i><h3>المتوسط</h3></div>
+            <div class="level-card reveal" style="animation-delay: 0.2s;"><i class="fa-solid fa-flask"></i><h3>الثانوي</h3></div>
+        </div>
+
+        <div class="main-content" id="lessonsSection">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;" class="reveal">
+                <h2 style="font-size: 1.8rem; font-weight: 800;">أحدث الدروس</h2>
+                
+                <div id="actionArea">
+                    <button class="btn-main btn-contact" id="btnContact" onclick="openModal('contactModal')">
+                        <i class="fa-solid fa-plus"></i> أضف درساً
+                    </button>
+                    <button class="btn-main btn-upload" id="btnUpload" onclick="openModal('uploadModal')" style="display: none;">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> رفع ملف
+                    </button>
                 </div>
             </div>
 
-            <div id="content-list" class="content-grid">
-                <!-- سيتم توليد البطاقات هنا بواسطة JavaScript -->
-            </div>
-            <div id="empty-msg" style="text-align: center; display: none; padding: 50px; color: #777;">
-                <i class="fas fa-folder-open" style="font-size: 3rem; margin-bottom: 20px;"></i>
-                <h3>لا يوجد محتوى مطابق للبحث</h3>
-            </div>
-        </section>
-
-        <!-- قسم تسجيل الدخول -->
-        <section id="login" class="section">
-            <div class="login-box">
-                <h2 style="margin-bottom: 20px; color: var(--primary-color);">تسجيل دخول المشرف</h2>
-                <p style="margin-bottom: 20px; color: #666;">كلمة المرور الافتراضية: admin</p>
-                <form onsubmit="handleLogin(event)">
-                    <input type="password" id="admin-password" placeholder="أدخل كلمة المرور" required>
-                    <button type="submit" class="btn-submit" style="width: 100%; margin-top: 15px;">دخول</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- قسم لوحة التحكم -->
-        <section id="admin-dashboard" class="section">
-            <div class="admin-header">
-                <h2>لوحة التحكم</h2>
-                <button onclick="logout()" class="action-btn" style="background: #777;">تسجيل خروج</button>
-            </div>
-
-            <!-- الإحصائيات -->
-            <div class="stats-container">
-                <div class="stat-card">
-                    <div class="stat-number" id="stat-total">0</div>
-                    <div>مجموع الموارد</div>
+            <div class="resources-grid" id="resourcesGrid">
+                <div class="no-results" id="noResultsMsg">
+                    <i class="fa-regular fa-face-frown-open"></i>
+                    <h3>عذراً، لم يتم العثور على نتائج</h3>
+                    <p>جرب البحث بكلمة أخرى.</p>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="stat-lessons">0</div>
-                    <div>دروس</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number" id="stat-tests">0</div>
-                    <div>اختبارات وفروض</div>
-                </div>
-            </div>
 
-            <!-- نموذج الإضافة -->
-            <div class="form-card">
-                <h3 style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
-                    <i class="fas fa-plus-circle"></i> إضافة محتوى جديد
-                </h3>
-                <form onsubmit="addContent(event)">
-                    <div class="form-row">
-                        <div class="filter-group">
-                            <label>عنوان المحتوى</label>
-                            <input type="text" id="inp-title" placeholder="مثال: جدول الضرب - السنة الرابعة" required>
-                        </div>
-                        <div class="filter-group">
-                            <label>القسم الدراسي</label>
-                            <select id="inp-level">
-                                <option value="primary">الابتدائي</option>
-                                <option value="middle">المتوسط</option>
-                                <option value="secondary">الثانوي</option>
-                            </select>
-                        </div>
+                <div class="resource-card reveal">
+                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/math1/400/200" alt="Math"></div>
+                    <div class="card-body">
+                        <span class="badge badge-lesson">درس</span>
+                        <h3 class="lesson-title">حل معادلات الدرجة الثانية</h3>
+                        <p style="color: #888; font-size: 0.9rem;">رياضيات - 4 متوسط</p>
+                        <button class="btn-download">تحميل الملف</button>
                     </div>
-                    <div class="form-row" style="margin-top: 15px;">
-                        <div class="filter-group">
-                            <label>المادة</label>
-                            <select id="inp-subject">
-                                <option value="math">الرياضيات</option>
-                                <option value="science">العلوم</option>
-                                <option value="arabic">اللغة العربية</option>
-                                <option value="french">اللغة الفرنسية</option>
-                                <option value="english">اللغة الإنجليزية</option>
-                                <option value="islamic">التربية الإسلامية</option>
-                                <option value="history">التاريخ والجغرافيا</option>
-                                <option value="philo">الفلسفة</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label>النوع</label>
-                            <select id="inp-type">
-                                <option value="lesson">درس</option>
-                                <option value="test">اختبار</option>
-                                <option value="homework">فرض</option>
-                                <option value="exercise">تمرين</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="filter-group" style="margin-top: 15px;">
-                        <label>وصف مختصر</label>
-                        <textarea id="inp-desc" rows="3" placeholder="نبذة عن المحتوى..." required></textarea>
-                    </div>
-                    
-                    <div class="filter-group" style="margin-top: 15px;">
-                        <label>رفع الملف (محاكاة)</label>
-                        <input type="file" id="inp-file">
-                        <small style="color: #888;">لن يتم رفع الملف فعلياً، سيتم حفظ اسمه فقط.</small>
-                    </div>
+                </div>
 
-                    <button type="submit" class="btn-submit" style="margin-top: 20px;">نشر المحتوى</button>
-                </form>
+                <div class="resource-card reveal" style="animation-delay: 0.2s;">
+                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/science1/400/200" alt="Science"></div>
+                    <div class="card-body">
+                        <span class="badge badge-exam">اختبار</span>
+                        <h3 class="lesson-title">اختبار الفصل الأول فيزياء</h3>
+                        <p style="color: #888; font-size: 0.9rem;">العلوم - 1 ثانوي</p>
+                        <button class="btn-download">تحميل الملف</button>
+                    </div>
+                </div>
+
+                <div class="resource-card reveal" style="animation-delay: 0.4s;">
+                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/eng1/400/200" alt="English"></div>
+                    <div class="card-body">
+                        <span class="badge badge-lesson">فرض</span>
+                        <h3 class="lesson-title">Grammar: Past Tense</h3>
+                        <p style="color: #888; font-size: 0.9rem;">الإنجليزية - 4 متوسط</p>
+                        <button class="btn-download">تحميل الملف</button>
+                    </div>
+                </div>
+
+                <div class="resource-card reveal" style="animation-delay: 0.6s;">
+                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/arab/400/200" alt="Arabic"></div>
+                    <div class="card-body">
+                        <span class="badge badge-lesson">درس</span>
+                        <h3 class="lesson-title">أساليب النفي في اللغة العربية</h3>
+                        <p style="color: #888; font-size: 0.9rem;">اللغة العربية - 1 متوسط</p>
+                        <button class="btn-download">تحميل الملف</button>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <!-- جدول المحتوى -->
-            <div class="table-container">
-                <h3 style="margin-bottom: 15px;">المحتوى المضاف مؤخراً</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>العنوان</th>
-                            <th>القسم</th>
-                            <th>المادة</th>
-                            <th>النوع</th>
-                            <th>التاريخ</th>
-                            <th>إجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody id="admin-table-body">
-                        <!-- صفوف الجدول -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 منصة مدرستي</p>
+        <button class="admin-trigger" id="adminLoginBtn" onclick="openModal('loginModal')">
+            <i class="fa-solid fa-user-secret"></i> دخول المسؤول
+        </button>
+    </footer>
 
-    </main>
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <i class="fa-solid fa-lock fa-3x" style="color: var(--primary);"></i>
+            <h2>منطقة محمية</h2>
+            <p style="color: #777;">أدخل كلمة السر للمتابعة</p>
+            <div class="input-group"><input type="password" id="adminPassword" placeholder="كلمة السر"></div>
+            <button class="btn-main btn-upload" style="width: 100%; justify-content: center;" onclick="checkPassword()">دخول</button>
+            <p style="margin-top: 15px; cursor: pointer; color: #999;" onclick="closeModal('loginModal')">إلغاء</p>
+        </div>
+    </div>
 
-    <!-- عنصر الإشعارات -->
-    <div id="toast" class="toast">
-        <i class="fas fa-info-circle"></i>
-        <span id="toast-msg">تمت العملية بنجاح</span>
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal">
+            <i class="fa-brands fa-telegram fa-3x" style="color: #0088cc; margin-bottom: 1rem;"></i>
+            <h3>تواصل معنا</h3>
+            <p>لإضافة دروس، يرجى مراسلتنا عبر تيليجرام.</p>
+            <a href="https://t.me/bikojl" target="_blank" class="btn-main btn-contact" style="width: 100%; justify-content: center; margin-top: 1rem; text-decoration: none;">@bikojl</a>
+            <p style="margin-top: 15px; cursor: pointer; color: #999;" onclick="closeModal('contactModal')">إغلاق</p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal">
+            <h2 style="margin-bottom: 1rem;">رفع ملف جديد</h2>
+            <form onsubmit="handleUpload(event)">
+                <div class="input-group" style="text-align: right;"><label>العنوان</label><input type="text" style="text-align: right;" required></div>
+                <div class="input-group" style="text-align: right;"><label>الملف</label><input type="file" style="text-align: right;" required></div>
+                <button type="submit" class="btn-main btn-upload" style="width: 100%; justify-content: center;">نشر</button>
+                <p style="margin-top: 15px; cursor: pointer; color: #999;" onclick="closeModal('uploadModal')">إلغاء</p>
+            </form>
+        </div>
     </div>
 
     <script>
-        // --- إدارة البيانات ---
-        
-        // بيانات أولية وهمية في حال كانت ذاكرة المتصفح فارغة
-        const initialData = [
-            { id: 1, title: "مقدمة في الجبر", level: "secondary", subject: "math", type: "lesson", desc: "شرح مبسط للمجموعات والعمليات عليها", date: "2023-10-01", fileName: "algebra_intro.pdf" },
-            { id: 2, title: "اختبار الفصل الأول في الرياضيات", level: "middle", subject: "math", type: "test", desc: "اختبار تجريبي للقسم 4 متوسط", date: "2023-10-05", fileName: "math_test_4am.pdf" },
-            { id: 3, title: "التصريف والتعريب", level: "secondary", subject: "arabic", type: "lesson", desc: "شرح قواعد التصريف الأساسية", date: "2023-10-10", fileName: "tasreef.pdf" },
-            { id: 4, title: "فرض رقم 2 في العلوم", level: "primary", subject: "science", type: "homework", desc: "الحركة والسكون", date: "2023-10-12", fileName: "science_hw.pdf" }
-        ];
+        // --- البحث ---
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const resourcesGrid = document.getElementById('resourcesGrid');
+        const cards = Array.from(document.querySelectorAll('.resource-card'));
+        const noResultsMsg = document.getElementById('noResultsMsg');
+        const lessonsSection = document.getElementById('lessonsSection');
 
-        // تحميل البيانات من LocalStorage أو استخدام البيانات الأولية
-        let contents = JSON.parse(localStorage.getItem('edu_platform_data')) || initialData;
-
-        // --- دوال مساعدة ---
-
-        const arabicNames = {
-            level: {
-                'primary': 'ابتدائي',
-                'middle': 'متوسط',
-                'secondary': 'ثانوي'
-            },
-            subject: {
-                'math': 'رياضيات',
-                'science': 'علوم',
-                'arabic': 'عربية',
-                'french': 'فرنسية',
-                'english': 'إنجليزية',
-                'islamic': 'إسلامية',
-                'history': 'تاريخ',
-                'philo': 'فلسفة'
-            },
-            type: {
-                'lesson': 'درس',
-                'test': 'اختبار',
-                'homework': 'فرض',
-                'exercise': 'تمرين'
-            },
-            typeIcons: {
-                'lesson': 'fa-book-open',
-                'test': 'fa-file-signature',
-                'homework': 'fa-file-alt',
-                'exercise': 'fa-pen'
-            }
-        };
-
-        function saveData() {
-            localStorage.setItem('edu_platform_data', JSON.stringify(contents));
-            updateStats();
-        }
-
-        function showToast(message, type = 'success') {
-            const toast = document.getElementById('toast');
-            const msg = document.getElementById('toast-msg');
-            
-            toast.className = `toast ${type}`;
-            msg.textContent = message;
-            toast.classList.add('show');
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // --- التنقل ---
-
-        function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-
-            if (sectionId === 'admin') {
-                const isLoggedIn = sessionStorage.getItem('isLoggedIn');
-                if (isLoggedIn) {
-                    document.getElementById('admin-dashboard').classList.add('active');
-                    document.getElementById('nav-admin').classList.add('active');
-                    renderAdminTable();
-                } else {
-                    document.getElementById('login').classList.add('active');
-                    document.getElementById('nav-admin').classList.add('active');
-                }
-            } else {
-                document.getElementById('home').classList.add('active');
-                document.getElementById('nav-home').classList.add('active');
-                renderHome(); // إعادة رسم الصفحة الرئيسية
-            }
-        }
-
-        // --- الصفحة الرئيسية ---
-
-        function renderHome() {
-            const list = document.getElementById('content-list');
-            const emptyMsg = document.getElementById('empty-msg');
-            const levelFilter = document.getElementById('filter-level').value;
-            const subjectFilter = document.getElementById('filter-subject').value;
-            const typeFilter = document.getElementById('filter-type').value;
-
-            list.innerHTML = '';
-            
-            // تصفية البيانات
-            const filteredData = contents.filter(item => {
-                return (levelFilter === 'all' || item.level === levelFilter) &&
-                       (subjectFilter === 'all' || item.subject === subjectFilter) &&
-                       (typeFilter === 'all' || item.type === typeFilter);
+        function performSearch() {
+            searchBtn.querySelector('i').classList.add('searching');
+            setTimeout(() => { searchBtn.querySelector('i').classList.remove('searching'); }, 500);
+            const term = searchInput.value.toLowerCase().trim();
+            let hasVisibleCards = false;
+            if(term.length > 0) { lessonsSection.scrollIntoView({ behavior: 'smooth' }); }
+            cards.forEach(card => {
+                const title = card.querySelector('.lesson-title').textContent.toLowerCase();
+                const category = card.querySelector('p').textContent.toLowerCase();
+                if (title.includes(term) || category.includes(term)) {
+                    card.style.display = 'block'; hasVisibleCards = true;
+                } else { card.style.display = 'none'; }
             });
+            if (hasVisibleCards) { noResultsMsg.style.display = 'none'; } 
+            else { noResultsMsg.style.display = 'block'; resourcesGrid.appendChild(noResultsMsg); }
+        }
+        searchInput.addEventListener('keyup', function(event) { if (event.key === 'Enter') { performSearch(); } });
 
-            if (filteredData.length === 0) {
-                emptyMsg.style.display = 'block';
+        // --- الأنيميشن ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener("scroll", reveal); reveal();
+
+        // --- المسؤول ---
+        let isAdmin = false; const ADMIN_PASS = "111222333";
+        function openModal(id) { document.getElementById(id).classList.add('open'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+        function checkPassword() {
+            const inputPass = document.getElementById('adminPassword').value;
+            if (inputPass === ADMIN_PASS) {
+                isAdmin = true; closeModal('loginModal'); toggleAdminUI(true); alert("مرحباً بك أيها المسؤول!");
             } else {
-                emptyMsg.style.display = 'none';
-                filteredData.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    // صورة عشوائية حسب المادة لجمال التصميم
-                    const bgImg = `https://picsum.photos/seed/${item.subject}${item.id}/300/150`;
-                    
-                    card.innerHTML = `
-                        <div class="card-header">
-                            <img src="${bgImg}" alt="Cover">
-                            <span class="card-badge">${arabicNames.level[item.level]}</span>
-                            <span class="card-type"><i class="fas ${arabicNames.typeIcons[item.type]}"></i> ${arabicNames.type[item.type]}</span>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">${item.title}</h3>
-                            <div class="card-meta">
-                                <span><i class="fas fa-book"></i> ${arabicNames.subject[item.subject]}</span>
-                                <span><i class="far fa-calendar"></i> ${item.date}</span>
-                            </div>
-                            <p class="card-desc">${item.desc}</p>
-                            <div class="card-footer">
-                                <a href="#" class="btn-download" onclick="downloadSim('${item.fileName}')">
-                                    <i class="fas fa-download"></i> تحميل (${item.fileName})
-                                </a>
-                            </div>
-                        </div>
-                    `;
-                    list.appendChild(card);
-                });
+                const modal = document.querySelector('#loginModal .modal');
+                modal.style.transform = "translateX(10px)";
+                setTimeout(() => modal.style.transform = "translateX(-10px)", 100);
+                setTimeout(() => modal.style.transform = "scale(1)", 200);
+                alert("كلمة السر غير صحيحة!");
             }
         }
-
-        function applyFilters() {
-            renderHome();
-        }
-
-        function downloadSim(fileName) {
-            showToast(`جارٍ تحميل الملف: ${fileName}`, 'success');
-            // في الواقع سيكون هنا رابط حقيقي
-        }
-
-        // --- لوحة التحكم ---
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const pass = document.getElementById('admin-password').value;
-            if (pass === 'admin') {
-                sessionStorage.setItem('isLoggedIn', 'true');
-                showSection('admin');
-                showToast('تم تسجيل الدخول بنجاح');
+        function toggleAdminUI(loggedIn) {
+            const btnContact = document.getElementById('btnContact');
+            const btnUpload = document.getElementById('btnUpload');
+            const adminBtn = document.getElementById('adminLoginBtn');
+            if (loggedIn) {
+                btnContact.style.display = 'none'; btnUpload.style.display = 'flex';
+                adminBtn.innerHTML = '<i class="fa-solid fa-unlock"></i> خروج المسؤول';
+                adminBtn.classList.add('active');
             } else {
-                showToast('كلمة المرور غير صحيحة', 'error');
+                btnContact.style.display = 'flex'; btnUpload.style.display = 'none';
+                adminBtn.innerHTML = '<i class="fa-solid fa-user-secret"></i> دخول المسؤول';
+                adminBtn.classList.remove('active');
             }
         }
-
-        function logout() {
-            sessionStorage.removeItem('isLoggedIn');
-            showSection('home');
-            showToast('تم تسجيل الخروج');
+        function handleUpload(e) {
+            e.preventDefault(); closeModal('uploadModal'); alert("تم رفع الملف بنجاح!"); e.target.reset();
         }
-
-        function addContent(e) {
-            e.preventDefault();
-            
-            const title = document.getElementById('inp-title').value;
-            const level = document.getElementById('inp-level').value;
-            const subject = document.getElementById('inp-subject').value;
-            const type = document.getElementById('inp-type').value;
-            const desc = document.getElementById('inp-desc').value;
-            const fileInput = document.getElementById('inp-file');
-            
-            let fileName = "file.pdf";
-            if (fileInput.files.length > 0) {
-                fileName = fileInput.files[0].name;
-            }
-
-            const newItem = {
-                id: Date.now(),
-                title,
-                level,
-                subject,
-                type,
-                desc,
-                date: new Date().toISOString().split('T')[0],
-                fileName
-            };
-
-            contents.unshift(newItem); // إضافة في البداية
-            saveData();
-            
-            // إعادة تعيين النموذج
-            e.target.reset();
-            
-            renderAdminTable();
-            showToast('تم إضافة المحتوى بنجاح');
-        }
-
-        function deleteContent(id) {
-            if(confirm('هل أنت متأكد من حذف هذا العنصر؟')) {
-                contents = contents.filter(item => item.id !== id);
-                saveData();
-                renderAdminTable();
-                showToast('تم حذف المحتوى', 'error');
-            }
-        }
-
-        function renderAdminTable() {
-            const tbody = document.getElementById('admin-table-body');
-            tbody.innerHTML = '';
-
-            contents.forEach(item => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.title}</td>
-                    <td>${arabicNames.level[item.level]}</td>
-                    <td>${arabicNames.subject[item.subject]}</td>
-                    <td><span style="background:#eee; padding:2px 8px; border-radius:4px;">${arabicNames.type[item.type]}</span></td>
-                    <td>${item.date}</td>
-                    <td>
-                        <button onclick="deleteContent(${item.id})" class="action-btn btn-delete">
-                            <i class="fas fa-trash"></i> حذف
-                        </button>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            });
-            updateStats();
-        }
-
-        function updateStats() {
-            document.getElementById('stat-total').innerText = contents.length;
-            document.getElementById('stat-lessons').innerText = contents.filter(i => i.type === 'lesson').length;
-            document.getElementById('stat-tests').innerText = contents.filter(i => i.type === 'test' || i.type === 'homework').length;
-        }
-
-        // تهيئة الموقع عند التحميل
-        document.addEventListener('DOMContentLoaded', () => {
-            renderHome();
-        });
-
+        window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.classList.remove('open'); } }
     </script>
 </body>
 </html>
