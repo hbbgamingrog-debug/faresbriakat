@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة مدرستي - الدروس الجزائرية</title>
+    <title>منصة مدرستي - الدروس الجزائرية والأدعية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -221,6 +221,181 @@
         .reveal.active { opacity: 1; transform: translateY(0); }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @media (max-width: 768px) { .hero h1 { font-size: 2rem; } nav ul { display: none; } }
+
+        /* --- تصميم قسم الأدعية الجديد --- */
+        .spiritual-section {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .section-header-dua {
+            text-align: center; 
+            margin-bottom: 3rem;
+        }
+        
+        .section-header-dua h2 {
+            font-size: 2rem; 
+            font-weight: 800; 
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-header-dua p { color: #636e72; }
+
+        .spiritual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .spiritual-grid { grid-template-columns: 1fr; }
+        }
+
+        /* تصميم السبحة - انسيابي */
+        .tasbih-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .tasbih-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #00cec9);
+            box-shadow: 0 10px 25px rgba(0, 184, 148, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3.5rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            user-select: none;
+            position: relative;
+            margin-bottom: 1.5rem;
+            border: 5px solid rgba(255,255,255,0.3);
+        }
+
+        .tasbih-circle:active {
+            transform: scale(0.9);
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.2);
+        }
+
+        .tasbih-label { font-size: 1.1rem; color: #636e72; font-weight: 700; margin-bottom: 1rem; }
+
+        .btn-reset-tasbih {
+            background: #f1f2f6;
+            color: var(--dark);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .btn-reset-tasbih:hover { background: #dfe6e9; }
+
+        /* تصميم بطاقة الأدعية */
+        .dua-card {
+            background: linear-gradient(to bottom left, #ffffff, #f8f9fa);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid #eee;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+        }
+
+        .dua-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: rgba(0, 184, 148, 0.1);
+        }
+
+        .dua-badge {
+            background: #e0f7fa;
+            color: #006064;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            align-self: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .dua-content {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: var(--dark);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-family: 'Cairo', serif; /* تحسين الخط للقراءة */
+        }
+
+        .dua-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-dua {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-next {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+            flex: 2;
+        }
+        .btn-next:hover { transform: translateY(-2px); background: var(--primary-dark); }
+
+        .btn-reset-dua {
+            background: white;
+            color: var(--danger);
+            border: 1px solid #fab1a0;
+            flex: 1;
+        }
+        .btn-reset-dua:hover { background: #fff5f5; }
+
     </style>
 </head>
 <body>
@@ -235,6 +410,7 @@
             <ul>
                 <li><a href="#" class="active">الرئيسية</a></li>
                 <li><a href="#">المناهج</a></li>
+                <li><a href="#spiritualSection">الأدعية</a></li>
                 <li><a href="#">اتصل بنا</a></li>
             </ul>
         </nav>
@@ -295,44 +471,48 @@
                     <i class="fa-regular fa-face-frown-open" style="font-size: 3rem; margin-bottom: 1rem; color: #ddd;"></i>
                     <h3>عذراً، لم يتم العثور على نتائج</h3>
                 </div>
+                <!-- المكان المحجوز للدروس -->
+            </div>
+        </div>
 
-                <!-- بطاقة 1 -->
-                <div class="resource-card reveal">
-                    <button class="delete-btn" onclick="event.stopPropagation(); deleteLesson(this)"><i class="fa-solid fa-trash"></i></button>
-                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/math1/400/200" alt="Math"></div>
-                    <div class="card-body">
-                        <span class="badge badge-lesson">درس</span>
-                        <h3 class="lesson-title">حل معادلات الدرجة الثانية</h3>
-                        <p class="lesson-meta">رياضيات - 4 متوسط</p>
-                        <button class="btn-download" style="width: 100%; padding: 10px; background: #f1f2f6; border: none; border-radius: 10px; font-weight: 700; margin-top: 1rem; cursor: pointer;">تحميل الملف</button>
+        <!-- قسم الأدعية المحدث -->
+        <div class="spiritual-section reveal" id="spiritualSection">
+            <div class="section-header-dua">
+                <h2><i class="fa-solid fa-hands-praying"></i> الأدعية والتسبيح</h2>
+                <p>ركن روحاني يومي لذكر الله والدعاء</p>
+            </div>
+            
+            <div class="spiritual-grid">
+                <!-- السبحة -->
+                <div class="tasbih-card">
+                    <div class="tasbih-circle" id="tasbihBtn" onclick="incrementTasbih()">
+                        <span id="tasbihCount">0</span>
                     </div>
+                    <div class="tasbih-label">عدد التسبيحات</div>
+                    <button class="btn-reset-tasbih" onclick="resetTasbih()">
+                        <i class="fa-solid fa-rotate-right"></i> تصفير العداد
+                    </button>
                 </div>
 
-                <!-- بطاقة 2 -->
-                <div class="resource-card reveal" style="animation-delay: 0.1s;">
-                    <button class="delete-btn" onclick="event.stopPropagation(); deleteLesson(this)"><i class="fa-solid fa-trash"></i></button>
-                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/science1/400/200" alt="Science"></div>
-                    <div class="card-body">
-                        <span class="badge badge-exam">اختبار</span>
-                        <h3 class="lesson-title">اختبار الفصل الأول فيزياء</h3>
-                        <p class="lesson-meta">العلوم - 1 ثانوي</p>
-                        <button class="btn-download" style="width: 100%; padding: 10px; background: #f1f2f6; border: none; border-radius: 10px; font-weight: 700; margin-top: 1rem; cursor: pointer;">تحميل الملف</button>
+                <!-- قسم الأدعية -->
+                <div class="dua-card">
+                    <i class="fa-solid fa-star-of-life dua-icon"></i>
+                    <div class="dua-badge">دعاء رقم: <span id="duaIndexDisplay">1</span></div>
+                    <div class="dua-content" id="duaText">
+                        سبحان الله وبحمده، سبحان الله العظيم.
                     </div>
-                </div>
-
-                <!-- بطاقة 3 -->
-                <div class="resource-card reveal" style="animation-delay: 0.2s;">
-                    <button class="delete-btn" onclick="event.stopPropagation(); deleteLesson(this)"><i class="fa-solid fa-trash"></i></button>
-                    <div class="card-img-wrap"><img src="https://picsum.photos/seed/bac/400/200" alt="BAC"></div>
-                    <div class="card-body">
-                        <span class="badge badge-exam">بكالوريا</span>
-                        <h3 class="lesson-title">نموذج بكالوريا رياضيات</h3>
-                        <p class="lesson-meta">3 ثانوي - بكالوريا</p>
-                        <button class="btn-download" style="width: 100%; padding: 10px; background: #f1f2f6; border: none; border-radius: 10px; font-weight: 700; margin-top: 1rem; cursor: pointer;">تحميل الملف</button>
+                    <div class="dua-actions">
+                        <button class="btn-dua btn-reset-dua" onclick="resetDuas()">
+                            <i class="fa-solid fa-backward-step"></i> من البداية
+                        </button>
+                        <button class="btn-dua btn-next" onclick="nextDua()">
+                            الدعاء التالي <i class="fa-solid fa-arrow-left"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <footer class="footer-cta">
@@ -359,7 +539,7 @@
         </div>
     </div>
 
-    <!-- 2. نافذة رفع الملفات (للمسؤول) - تم تحديث قائمة السنوات -->
+    <!-- 2. نافذة رفع الملفات (للمسؤول) -->
     <div class="modal-overlay" id="uploadModal">
         <div class="modal">
             <div class="modal-header">
@@ -376,10 +556,8 @@
                     </div>
                     <div class="form-group">
                         <label>السنة الدراسية</label>
-                        <!-- القائمة المحتوية على جميع السنوات -->
                         <select class="form-control" required>
                             <option value="" disabled selected>اختر السنة الدراسية</option>
-                            
                             <optgroup label="الطور الابتدائي">
                                 <option value="1-primary">سنة أولى ابتدائي</option>
                                 <option value="2-primary">سنة ثانية ابتدائي</option>
@@ -387,14 +565,12 @@
                                 <option value="4-primary">سنة رابعة ابتدائي</option>
                                 <option value="5-primary">سنة خامسة ابتدائي</option>
                             </optgroup>
-
                             <optgroup label="الطور المتوسط">
                                 <option value="1-middle">سنة أولى متوسط</option>
                                 <option value="2-middle">سنة ثانية متوسط</option>
                                 <option value="3-middle">سنة ثالثة متوسط</option>
                                 <option value="4-middle">سنة رابعة متوسط</option>
                             </optgroup>
-
                             <optgroup label="الطور الثانوي">
                                 <option value="1-secondary">سنة أولى ثانوي</option>
                                 <option value="2-secondary">سنة ثانية ثانوي</option>
@@ -594,6 +770,76 @@
             }, function(err) {
                 console.error('فشل النسخ', err);
             });
+        }
+
+        // --- وظائف السبحة والأدعية ---
+        let count = 0;
+        const tasbihBtn = document.getElementById('tasbihBtn');
+
+        function incrementTasbih() {
+            count++;
+            // استخدام getElementById مباشرة لضمان الوصول للعنصر
+            document.getElementById('tasbihCount').innerText = count;
+            
+            if (navigator.vibrate) navigator.vibrate(50);
+            
+            tasbihBtn.style.transform = "scale(0.95)";
+            setTimeout(() => tasbihBtn.style.transform = "scale(1)", 100);
+        }
+
+        function resetTasbih() {
+            // تصفير مباشر بدون رسالة تأكيد
+            count = 0;
+            document.getElementById('tasbihCount').innerText = count;
+        }
+
+        // --- قائمة الأدعية ---
+        const duasList = [
+            "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ.",
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى.",
+            "اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ، دِقَّهُ وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ، وَعَلَانِيَتَهُ وَسِرَّهُ.",
+            "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً، إِنَّكَ أَنْتَ الْوَهَّابُ.",
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ الْهَمِّ وَالْحُزْنِ، وَأَعُوذُ بِكَ مِنْ الْعَجْزِ وَالْكَسَلِ.",
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ قَهْرِ الرِّجَالِ.",
+            "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا.",
+            "سُبْحَانَ اللهِ وَبِحَمْدِهِ، سُبْحَانَ اللهِ الْعَظِيمِ.",
+            "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ.",
+            "أَسْتَغْفِرُ اللهَ الْعَظِيمَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ.",
+            "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ زَوَالِ نِعْمَتِكَ، وَتَحَوُّلِ عَافِيَتِكَ، وَفُجَاءَةِ نِقْمَتِكَ.",
+            "رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ.",
+            "اللَّهُمَّ يَسِّرْ لِي أُمُورِي، وَلَا تُعَسِّرْهَا.",
+            "رَبِّ اشْرَحْ لِي صَدْرِي، وَيَسِّرْ لِي أَمْرِي، وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي.",
+            "اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ."
+        ];
+        
+        // توليد أدعية إضافية للوصول لرقم كبير
+        for(let i=16; i<=100; i++) {
+            duasList.push("اللهم أعنا على ذكرك وشكرك وحسن عبادتك.");
+        }
+
+        let currentDuaIndex = 0;
+        const duaTextDisplay = document.getElementById('duaText');
+        const duaIndexDisplay = document.getElementById('duaIndexDisplay');
+
+        function nextDua() {
+            currentDuaIndex = (currentDuaIndex + 1) % duasList.length;
+            // تحديث النص بتأثير بسيط
+            duaTextDisplay.style.opacity = 0;
+            setTimeout(() => {
+                duaTextDisplay.innerText = duasList[currentDuaIndex];
+                duaIndexDisplay.innerText = currentDuaIndex + 1;
+                duaTextDisplay.style.opacity = 1;
+            }, 200);
+        }
+
+        function resetDuas() {
+            currentDuaIndex = 0;
+            duaTextDisplay.style.opacity = 0;
+            setTimeout(() => {
+                duaTextDisplay.innerText = duasList[0];
+                duaIndexDisplay.innerText = 1;
+                duaTextDisplay.style.opacity = 1;
+            }, 200);
         }
 
         window.onclick = function(event) {
